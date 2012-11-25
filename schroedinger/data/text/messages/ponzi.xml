@@ -6,9 +6,34 @@
 	J'aimerai savoir ce qui se trame derrière le meurtre du Maire.
 </message>
 
-<message id="3" answer="true">
+<message id="3" answer="false">
+	Je n'étais pas sur les lieux lors du drame, je travaillais ici comme à mon habitude.
+	Je crains de ne pas pouvoir vous en dire plus.
 </message>
 
-<message id="4" answer="false">
+<message id="4" answer="true">
+	OK ça va, bonne journée donc.
+</message>
+
+<message id="5" answer="true">
+	Ça vous arrange plutôt bien cette mort fortuite, me trompe-je?
+</message>
+
+<message id="6" answer="false">
+	Vous osez m'accuser! Je n'ai rien à me reprocher.
+	Aller plutôt voir l'autre fou sur sa colline. Je suis sure qu'il est impliqué dans cette affaire sordide.
+</message>
+
+<message id="7" answer="true">
+	Mhmh, merci pour l'info, je vais mener mon enquête.
+</message>
+
+<message id="8" answer="true">
+	C'est un peu facile d'accuser les fous.
+</message>
+
+<message id="9" answer="false">
+	En tout cas si c'est pas le fou, ça doit être Tux. Toujours à manigancer quelque chose.
+	Allez voir donc en face, à la prison, vérifier si elle y est toujours enfermé.
 </message>
 

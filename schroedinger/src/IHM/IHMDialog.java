@@ -59,6 +59,7 @@ public class IHMDialog extends BasicGame {
 		width = schroedingerGame.getWidth() - portraitSize;
 		height = schroedingerGame.getHeight();
 		this.dialog = dialog;
+		limitIndex = dialog.size()-1;
 		initHead(id);
 	}
 	
@@ -68,7 +69,7 @@ public class IHMDialog extends BasicGame {
 		if(id == Newton.getID()) {
 				img[0] = new Image("./img/Newton.jpg");
 		} else {
-			
+			//TODO
 		}
 		animationHead = new Animation(img, 1);
 		} catch (SlickException e) {
@@ -203,9 +204,12 @@ public class IHMDialog extends BasicGame {
 	}
 
 	private void setAnswerIndex(int index) {
-		if (index < limitIndex + 1 && index > 0) {
-			answered = true;
-			answerIndex = index;
+		if (lines == answers) {
+			if (index < limitIndex + 1 && index > 0) {
+				System.out.println("Vous avez choisi la réponse "+index+" !!!!");
+				answered = true;
+				answerIndex = index;
+			}
 		}
 	}
 

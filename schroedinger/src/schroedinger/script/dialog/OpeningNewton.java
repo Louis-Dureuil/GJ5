@@ -24,6 +24,7 @@ public class OpeningNewton extends Dialog {
 		if (this.currentMessage == 0) {
 			ArrayList<DialogIndexes> ret = new ArrayList<DialogIndexes>();
 			ret.add(messages.get(0));
+			//ret.addAll(0, messages);
 			return ret;
 		}
 		over = true;

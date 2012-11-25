@@ -1,5 +1,7 @@
 package schroedinger;
 
+import java.util.List;
+
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -9,6 +11,9 @@ import org.newdawn.slick.SlickException;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
+
+import schroedinger.script.pnj.Newton;
+import schroedinger.util.DialogIndexes;
 
 import IHM.IHMDialog;
 public class SchroedingerGame extends BasicGame
@@ -59,19 +64,27 @@ public class SchroedingerGame extends BasicGame
 		if (!World.ffad.actionStopped) {
 			World.ffad.incClock(delta);
 		}
+		World.ffad.actionStopped = false;
 		if (World.ffad.currentDialog != null && ihm == null) {
 			World.ffad.actionStopped = true;
-			ihm = new IHMDialog(this,
-					World.ffad.currentDialog.answer(World.ffad.lastAnswer),
-					World.ffad.newton.getID());  
-			ihm.init(gc);
+			List<DialogIndexes> d = World.ffad.currentDialog.answer(World.ffad.lastAnswer);
+			if (d != null) {
+				ihm = new IHMDialog(this,
+						d,
+						Newton.getID());  
+				ihm.init(gc);
+			}
 		}
+		
 		if (ihm != null && ihm.isAnswered()) {
 			World.ffad.lastAnswer = ihm.getAnswerIndex();
 			ihm = null;
 		}
 		if (ihm != null) {
 			ihm.update(gc, delta);
+		}
+		if (World.ffad.currentDialog != null && World.ffad.currentDialog.isOver()) {
+			World.ffad.currentDialog = null;
 		}
 		World.ffad.newton.update();
 	}
@@ -102,7 +115,7 @@ public class SchroedingerGame extends BasicGame
 
 	public static void main(String[] args) throws SlickException
 	{
-		SchroedingerGame hw = new SchroedingerGame(800,600);
+		SchroedingerGame hw = new SchroedingerGame(800,500);
 		AppGameContainer app = new AppGameContainer(hw);
 
 		app.setDisplayMode(hw.getWidth(),hw.getHeight(), false);

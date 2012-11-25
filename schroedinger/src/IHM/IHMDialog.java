@@ -3,7 +3,6 @@ package IHM;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
@@ -12,32 +11,22 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
+import schroedinger.SchroedingerGame;
 import schroedinger.util.DialogIndexes;
 
 public class IHMDialog extends BasicGame {
 
 	private static int portraitSize = 128;
-	/**
-	 * Entry point to our test
-	 *
-	 * @param argv The arguments passed to the test
-	 */
-	public static void main(String[] argv) {
-		/*try {
-            AppGameContainer container = new AppGameContainer(new IHMDialog());
-            container.setDisplayMode(800, 600, false);
-            container.start();
-        } catch (SlickException e) {
-            e.printStackTrace();
-        }*/
-	}
 	
+
 	private List<DialogIndexes> dialog;
 
 	private List<String> question;
 	private List<String> answers;
 	private List<String> lines;
 
+	final static int LINES_SHOWN = 6; 
+	
 	private boolean answered = false;
 
 	private int answerIndex = 0;
@@ -45,21 +34,25 @@ public class IHMDialog extends BasicGame {
 	private int limitIndex = 0;
 
 	private int renderLine = 0;
-	private boolean goNextDialogPage = true;
+	private boolean goNextDialogPage = false;
 
 	private Font font;
 	private int width = 800 - portraitSize;
 	private Color box = new Color(1f,1f,1f,0.45f);
 	private int height = 600;
 
+	public boolean isAnswered() { return answered; }
+
+	public int getAnswerIndex() { return answerIndex; } 
+
 	public IHMDialog() {
 		super("IHMDialog");
 	}
 
-	public IHMDialog(HelloWorld helloWorld,List<DialogIndexes> dialog) {
+	public IHMDialog(SchroedingerGame schroedingerGame,List<DialogIndexes> dialog) {
 		super("IHMDialog");
-		width = helloWorld.getWidth() - portraitSize;
-		height = helloWorld.getHeight();
+		width = schroedingerGame.getWidth() - portraitSize;
+		height = schroedingerGame.getHeight();
 		this.dialog = dialog;
 	}
 
@@ -82,35 +75,29 @@ public class IHMDialog extends BasicGame {
 	//render the dialog box
 	@Override
 	public void render(GameContainer container, Graphics g) throws SlickException {
-		if (goNextDialogPage) {
-			int x = portraitSize;
-			int y = height - portraitSize;
-
-			g.setColor(box);
-			g.fillRect(x, y, width, height - y);
-
-			g.setColor(Color.white);
-			int lineHeight = font.getLineHeight();
-
-			//only render the rows we have typed out so far (renderRow = current row)
-			int i;
-			for (i=renderLine; i<lines.size() && y < height-lineHeight; i++) {
-				g.drawString(lines.get(i), x, y);
-				y += lineHeight;
-				renderLine++;
-			}
-			if (i == lines.size()) {
-				if (lines.equals(answers))
-					// Destroy !
-					
-					renderLine=0;
-					lines=answers;
-				
-			}
-			goNextDialogPage= false;
-
-			g.drawString("SPACE to restart, ENTER to show all", 10, 40);
+		if (lines == null) {
+			return;
 		}
+		
+		int x = portraitSize;
+		int y = height - portraitSize;
+
+		g.setColor(box);
+		g.fillRect(x, y, width, height - y);
+
+		g.setColor(Color.white);
+		int lineHeight = font.getLineHeight();
+
+		//only render the rows we have typed out so far (renderRow = current row)
+		int i;
+		//for (i=renderLine; i<lines.size() && y < height-lineHeight; i++) {
+		for (i=renderLine; i<lines.size() && i - renderLine < LINES_SHOWN; i++) {	
+			g.drawString(lines.get(i), x, y);
+			y += lineHeight;
+		}
+		
+		g.drawString("SPACE to restart, ENTER to show all", 10, 40);
+		
 	}
 
 	@Override
@@ -119,44 +106,21 @@ public class IHMDialog extends BasicGame {
 			//
 			System.out.println(answerIndex);
 		}
-	}
+		if (goNextDialogPage) {
 
-	@Override
-	public void keyPressed(int key, char c) {
-		switch(key) {
-		case Input.KEY_ESCAPE:
-			System.exit(0);
-			break;
-		case Input.KEY_ENTER:
-			goNextDialogPage=true;
-			break;
-		case Input.KEY_1:
-		case Input.KEY_NUMPAD1:
-			setAnswerIndex(1);
-			break;
-		case Input.KEY_2:
-		case Input.KEY_NUMPAD2:
-			setAnswerIndex(2);
-			break;
-		case Input.KEY_3:
-		case Input.KEY_NUMPAD3:
-			setAnswerIndex(3);
-			break;
-		case Input.KEY_4:
-		case Input.KEY_NUMPAD4:
-			setAnswerIndex(4);
-			break;
-		case Input.KEY_5:
-		case Input.KEY_NUMPAD5:
-			setAnswerIndex(5);
-			break;
-		case Input.KEY_6:
-		case Input.KEY_NUMPAD6:
-			setAnswerIndex(6);
-			break;
-		default:
+			goNextDialogPage= false;
+			renderLine++;
+			if (renderLine + LINES_SHOWN >=  lines.size()) {
+				if (lines.equals(answers))
+					// Destroy !
+
+					renderLine=0;
+				lines=answers;
+
+			}
 		}
 	}
+
 
 	//Wraps the given string into a list of split lines based on the width
 	private List<String> wrap(String text, Font font, int width) {
@@ -219,5 +183,38 @@ public class IHMDialog extends BasicGame {
 		}
 	}
 
+	@Override
+	public void keyPressed(int key, char c) {
+		switch(key) {
+		case Input.KEY_ENTER:
+			goNextDialogPage=true;
+			break;
+		case Input.KEY_1:
+		case Input.KEY_NUMPAD1:
+			setAnswerIndex(1);
+			break;
+		case Input.KEY_2:
+		case Input.KEY_NUMPAD2:
+			setAnswerIndex(2);
+			break;
+		case Input.KEY_3:
+		case Input.KEY_NUMPAD3:
+			setAnswerIndex(3);
+			break;
+		case Input.KEY_4:
+		case Input.KEY_NUMPAD4:
+			setAnswerIndex(4);
+			break;
+		case Input.KEY_5:
+		case Input.KEY_NUMPAD5:
+			setAnswerIndex(5);
+			break;
+		case Input.KEY_6:
+		case Input.KEY_NUMPAD6:
+			setAnswerIndex(6);
+			break;
+		default:
+		}
+	}
 
 }

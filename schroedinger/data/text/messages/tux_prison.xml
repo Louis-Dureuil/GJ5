@@ -1,0 +1,26 @@
+<message id="1" answer="false">
+	Qu'est-ce qui t'amène, batard?!
+</message>
+
+<message id="2" answer="true">
+	Rien désolé, je m'en vais.
+</message>
+
+<message id="3" answer="true">
+	J'enquête sur la mort du Maire. Tu ne serai pas ce qui s'est passé par hasard?
+</message>
+
+<message id="4" answer="false">
+	J'en sais rien, bouffon! Je suis coincée dans cette prison depuis hier, j'ai rien pu faire.
+	Alors arrête de me faire chier et dégage!
+</message>
+
+<message id="5" answer="true">
+	OK, trés bien. Si vous le prenez comme ça je m'en vais.
+</message>
+
+<message id="6" answer="true">
+	Je sais trés bien que t'arrive à t'échapper par les sous-sols, alors me prend pas pour un con.
+	Nous nous reverrons!
+</message>
+

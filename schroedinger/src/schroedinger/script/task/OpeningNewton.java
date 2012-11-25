@@ -1,10 +1,12 @@
 package schroedinger.script.task;
 
+import schroedinger.Dialog;
 import schroedinger.Task;
 import schroedinger.TaskState;
 
 public class OpeningNewton extends Task {
 
+	boolean finished = false;
 	public OpeningNewton() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -19,7 +21,11 @@ public class OpeningNewton extends Task {
 	@Override
 	public TaskState getState() {
 		// TODO Auto-generated method stub
-		return null;
+		if (finished) {
+			return TaskState.completed;
+		} else {
+			return TaskState.running;
+		}
 	}
 
 	@Override
@@ -31,7 +37,9 @@ public class OpeningNewton extends Task {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		
+		finished = true;
+		Dialog d = new schroedinger.script.dialog.OpeningNewton();
+		d.display();
 	}
 
 	

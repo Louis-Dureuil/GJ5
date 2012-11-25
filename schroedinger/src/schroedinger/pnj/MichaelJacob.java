@@ -1,6 +1,5 @@
 package schroedinger.pnj;
 
-import schroedinger.Dialog;
 import schroedinger.PNJ;
 
 public class MichaelJacob extends PNJ {

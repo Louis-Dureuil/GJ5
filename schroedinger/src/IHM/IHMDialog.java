@@ -3,15 +3,18 @@ package IHM;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 import schroedinger.SchroedingerGame;
+import schroedinger.script.pnj.Newton;
 import schroedinger.util.DialogIndexes;
 
 public class IHMDialog extends BasicGame {
@@ -40,6 +43,8 @@ public class IHMDialog extends BasicGame {
 	private int width = 800 - portraitSize;
 	private Color box = new Color(1f,1f,1f,0.45f);
 	private int height = 600;
+	Image [] img;
+	Animation animationHead;
 
 	public boolean isAnswered() { return answered; }
 
@@ -49,11 +54,27 @@ public class IHMDialog extends BasicGame {
 		super("IHMDialog");
 	}
 
-	public IHMDialog(SchroedingerGame schroedingerGame,List<DialogIndexes> dialog) {
+	public IHMDialog(SchroedingerGame schroedingerGame,List<DialogIndexes> dialog,int id) {
 		super("IHMDialog");
 		width = schroedingerGame.getWidth() - portraitSize;
 		height = schroedingerGame.getHeight();
 		this.dialog = dialog;
+		limitIndex = dialog.size()-1;
+		initHead(id);
+	}
+	
+	public void initHead(int id) {
+		img = new Image[1];
+		try {
+		if(id == Newton.getID()) {
+				img[0] = new Image("./img/Newton.jpg");
+		} else {
+			//TODO
+		}
+		animationHead = new Animation(img, 1);
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
 	}
 
 	//initialize the game and dialog box
@@ -64,8 +85,9 @@ public class IHMDialog extends BasicGame {
 		if (dialog.size() == 1) {
 			answers = null;
 		} else {
+			answers = new ArrayList<String>();
 			for (DialogIndexes diag : dialog) {
-				answers.add(diag.message);
+				answers.add(diag.index+" "+diag.message);
 			}
 			answers.remove(0);
 		}
@@ -82,6 +104,8 @@ public class IHMDialog extends BasicGame {
 		int x = portraitSize;
 		int y = height - portraitSize;
 
+		animationHead.draw(0, y);
+		
 		g.setColor(box);
 		g.fillRect(x, y, width, height - y);
 
@@ -96,7 +120,7 @@ public class IHMDialog extends BasicGame {
 			y += lineHeight;
 		}
 		
-		g.drawString("SPACE to restart, ENTER to show all", 10, 40);
+		g.drawString("ENTER to continue, press 1,2,3... to choose an answer", 10, 40);
 		
 	}
 
@@ -110,13 +134,16 @@ public class IHMDialog extends BasicGame {
 
 			goNextDialogPage= false;
 			renderLine++;
-			if (renderLine + LINES_SHOWN >=  lines.size()) {
-				if (lines.equals(answers))
-					// Destroy !
-
+			if (lines != null) {
+				if (renderLine + LINES_SHOWN >=  lines.size()) {
+					if (lines.equals(answers))
+						answered=true;
 					renderLine=0;
-				lines=answers;
-
+					lines=answers;
+				}
+			} else {
+				// On sort
+				answered=true;
 			}
 		}
 	}
@@ -177,9 +204,12 @@ public class IHMDialog extends BasicGame {
 	}
 
 	private void setAnswerIndex(int index) {
-		if (index < limitIndex + 1 && index > 0) {
-			answered = true;
-			answerIndex = index;
+		if (lines == answers) {
+			if (index < limitIndex + 1 && index > 0) {
+				System.out.println("Vous avez choisi la réponse "+index+" !!!!");
+				answered = true;
+				answerIndex = index;
+			}
 		}
 	}
 

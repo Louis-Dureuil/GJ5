@@ -1,7 +1,7 @@
 package IHM;
+
 import java.util.ArrayList;
 import java.util.List;
-import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
@@ -12,31 +12,35 @@ import org.newdawn.slick.SlickException;
 
 public class IHMDialog extends BasicGame {
    
-    /**
+    private static int portraitSize = 128;
+	String question;
+	List<String> answers;
+	/**
      * Entry point to our test
      *
      * @param argv The arguments passed to the test
      */
     public static void main(String[] argv) {
-        try {
+        /*try {
             AppGameContainer container = new AppGameContainer(new IHMDialog());
             container.setDisplayMode(800, 600, false);
             container.start();
         } catch (SlickException e) {
             e.printStackTrace();
-        }
+        }*/
     }
    
     private List<String> lines;
     private Font font;
-    private int width = 800 - 128;
+    private int width = 800 - portraitSize;
     private Color box = new Color(1f,1f,1f,0.45f);
    
-    public IHMDialog() {
+    public IHMDialog(HelloWorld helloWorld) {
         super("IHMDialog");
-    }
-   
-    //initialize the game and dialog box
+        width = helloWorld.getWidth() - portraitSize;
+	}
+
+	//initialize the game and dialog box
     @Override
     public void init(GameContainer c) throws SlickException {
         font = c.getDefaultFont();
@@ -48,12 +52,18 @@ public class IHMDialog extends BasicGame {
         //create a list of lines based on the above text
         lines = wrap(text, font, width);
     }
+    
+    public void init(GameContainer c,String text) throws SlickException {
+        font = c.getDefaultFont();
+        //create a list of lines based on the above text
+        lines = wrap(text, font, width);
+    }
    
     //render the dialog box
     @Override
     public void render(GameContainer container, Graphics g) throws SlickException {
-        int x = 128;
-        int y = 600 - 128;
+        int x = portraitSize;
+        int y = 600 - portraitSize;
        
         g.setColor(box);
         g.fillRect(x, y, width, 600 - y);

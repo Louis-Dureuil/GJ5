@@ -140,6 +140,9 @@ public class IHMDialog extends BasicGame {
 						answered=true;
 					renderLine=0;
 					lines=answers;
+					if (lines == null) {
+						answered = true;
+					}
 				}
 			} else {
 				// On sort

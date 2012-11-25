@@ -1,6 +1,8 @@
 package schroedinger.script.pnj;
 
 import schroedinger.PNJ;
+import schroedinger.Task;
+import schroedinger.TaskState;
 import schroedinger.script.task.OpeningNewton;
 import schroedinger.script.task.Ronde;
 
@@ -22,7 +24,12 @@ public class Newton extends PNJ {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		this.getCurrentTask().update();
+		Task cur = this.getCurrentTask();
+		if (cur.getState() == TaskState.running) {
+			cur.update();
+		} else if (cur.getState() == TaskState.completed) {
+			this.tasks.remove();
+		}
 	}
 
 	@Override

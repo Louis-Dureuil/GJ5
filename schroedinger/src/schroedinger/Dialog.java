@@ -9,7 +9,7 @@ public abstract class Dialog {
 	protected boolean isQuestion;
 	protected boolean over;
 	
-	public abstract void answer(int answer);
+	public abstract List<DialogIndexes> answer(int answer);
 	
 	public void display() {
 		World.ffad.currentDialog = this;

@@ -31,14 +31,17 @@
  <tileset firstgid="47" name="sherif" tilewidth="32" tileheight="32">
   <image source="sherif.jpg" width="64" height="64"/>
  </tileset>
- <layer name="collision" width="100" height="100">
+ <tileset firstgid="51" name="route" tilewidth="32" tileheight="32">
+  <image source="route.jpg" width="32" height="32"/>
+ </tileset>
+ <layer name="collision" width="100" height="100" opacity="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAA+3VMQoAMAgDQO3/H929U6tDEW64TYSQIRkRCQAAAAAAAAAAAJSsQ/fmd57p9AFAxc02vP6wI/oAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGC2DWVgUU9AnAAA
   </data>
  </layer>
- <layer name="Ville" width="100" height="100" opacity="0.51">
+ <layer name="Ville" width="100" height="100">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3OSU4CYRSF0T9BULFFROwVbBBQuv0vzruBmlQqqUGdk3yzl5dbCgAAAAAAAAAAAFDXIv2kZVpV3Bynk3SahhU3vXTU+LruWaff9Jc2FTdn6TxdpMuKm34aNL4O2nWVrtMo3bS8hVLG6TZN0l3LWyhlmu7TQ3qs+WObduktvadZmjcxroOe0nN6Sa81f+zTIX2kz/SVvhtZBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAV/wDAjjZaUCcAAA=
+   H4sIAAAAAAAAA+3RWU4CURCG0U4UUASiUXFAnCdABnX/e+N3Af3SXhKSPif53iqVyr1VBQAAAAAAAAAAADT1kT7TLM1rZnrpKB2nfs3MQTosfl37LNJXWqZVzcxJGqRhGtXMdFK3+HXt87uDaO7v/U7TWeU/9sF5ukiXafyPPf6jjKt0nW7SbcMd67RJD+kxPaXnEse10CTdpWm6b7jjO/2kl/Sa3tJ7kesAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGiLLX2ByhtAnAAA
   </data>
  </layer>
 </map>

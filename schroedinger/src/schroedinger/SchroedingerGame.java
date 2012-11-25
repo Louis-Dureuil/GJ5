@@ -43,19 +43,12 @@ public class SchroedingerGame extends BasicGame
 			e.printStackTrace();
 		}
 		music.loop();
-		try {
-			map = new TiledMap("img/map.tmx","img");
-		} catch (SlickException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 	@Override
 	public void init(GameContainer gc) throws SlickException
 	{
-
-		//
+			map = new TiledMap("img/map.tmx","img");
 	}
 
 	@Override
@@ -92,6 +85,8 @@ public class SchroedingerGame extends BasicGame
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException
 	{
+		
+		map.render(0, 0, 25, 25, width, height,1,false);
 		if (ihm != null) {
 			ihm.render(gc, g);
 		}
@@ -120,6 +115,7 @@ public class SchroedingerGame extends BasicGame
 
 		app.setDisplayMode(hw.getWidth(),hw.getHeight(), false);
 		app.start();
+		
 	}
 
 	public void keyPressed(int key, char c) {

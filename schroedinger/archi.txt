@@ -1,0 +1,5 @@
+- objets
+- actions en fonction des objets
+- PJ
+- PNJ
+- switchs

@@ -8,6 +8,8 @@ import org.newdawn.slick.SlickException;
 
 import org.newdawn.slick.*;
 
+import schroedinger.script.pnj.Newton;
+
 import IHM.IHMDialog;
 
 
@@ -30,9 +32,11 @@ public class HelloWorld extends BasicGame
      this.height = height;
   }
 
+  Newton n = new Newton();
   @Override
   public void init(GameContainer gc) throws SlickException
   {
+	  
 	  ihm = new IHMDialog(this);
 	  ihm.init(gc);
   }

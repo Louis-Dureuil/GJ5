@@ -6,16 +6,15 @@ import java.util.List;
 
 import schroedinger.Dialog;
 import schroedinger.util.DialogIndexes;
+import schroedinger.util.XMLReader;
 
 public class OpeningNewton extends Dialog {
 
 	public OpeningNewton() {
 		this.messages = new ArrayList<DialogIndexes>();
-		messages.add(new DialogIndexes(0,
-				"Mes amis, l'heure est grave ! " +
-				"Un meurtre a été commis dans notre ville de " +
-				"Far, Far A Day ! Cet acte est impardonnable, " +
-				"et mérite une punition exemplaire !"));
+		String message = XMLReader.parse("data/text/messages/newton.xml", 0);
+		messages.add(new DialogIndexes(0, message
+				));
 	}
 	
 	@Override

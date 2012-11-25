@@ -135,7 +135,7 @@ public class IHMDialog extends BasicGame {
 			goNextDialogPage= false;
 			renderLine++;
 			if (lines != null) {
-				if (renderLine + LINES_SHOWN >=  lines.size()) {
+				if (renderLine + LINES_SHOWN >  lines.size()) {
 					if (lines.equals(answers))
 						answered=true;
 					renderLine=0;

@@ -10,6 +10,7 @@ import org.newdawn.slick.SlickException;
 
 
 import org.newdawn.slick.*;
+import org.newdawn.slick.tiled.TiledMap;
 
 import schroedinger.script.pnj.Newton;
 import schroedinger.util.DialogIndexes;
@@ -18,6 +19,9 @@ import IHM.IHMDialog;
 public class SchroedingerGame extends BasicGame
 {
 
+	TiledMap map;
+	Music music;
+	
 	private IHMDialog ihm;
 	private int width = 800;
 	private int height = 600;
@@ -32,13 +36,19 @@ public class SchroedingerGame extends BasicGame
 		super("Schroedinger");
 		this.width = width;
 		this.height = height;
+		try {
+			music = new Music("./music/Ville.wav");
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		music.loop();
 	}
 
 	@Override
 	public void init(GameContainer gc) throws SlickException
 	{
-
-		//
+			map = new TiledMap("img/map.tmx","img");
 	}
 
 	@Override
@@ -75,6 +85,8 @@ public class SchroedingerGame extends BasicGame
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException
 	{
+		
+		map.render(0, 0, 25, 25, width, height,1,false);
 		if (ihm != null) {
 			ihm.render(gc, g);
 		}
@@ -103,6 +115,7 @@ public class SchroedingerGame extends BasicGame
 
 		app.setDisplayMode(hw.getWidth(),hw.getHeight(), false);
 		app.start();
+		
 	}
 
 	public void keyPressed(int key, char c) {

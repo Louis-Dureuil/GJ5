@@ -1,6 +1,8 @@
 package schroedinger.script.dialog;
 
 import java.util.ArrayList;
+import java.util.List;
+
 
 import schroedinger.Dialog;
 import schroedinger.util.DialogIndexes;
@@ -13,13 +15,19 @@ public class OpeningNewton extends Dialog {
 				"Mes amis, l'heure est grave ! " +
 				"Un meurtre a été commis dans notre ville de " +
 				"Far, Far A Day ! Cet acte est impardonnable, " +
-				"et mérite une punition exemplaire !\n"));
+				"et mérite une punition exemplaire !"));
 	}
 	
 	@Override
-	public void answer(int answer) {
+	public List<DialogIndexes> answer(int answer) {
 		// TODO Auto-generated method stub
+		if (this.currentMessage == 0) {
+			ArrayList<DialogIndexes> ret = new ArrayList<DialogIndexes>();
+			ret.add(messages.get(0));
+			return ret;
+		}
 		over = true;
+		return null;
 	}
 
 }

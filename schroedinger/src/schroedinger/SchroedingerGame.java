@@ -8,11 +8,15 @@ import org.newdawn.slick.SlickException;
 
 
 import org.newdawn.slick.*;
+import org.newdawn.slick.tiled.TiledMap;
 
 import IHM.IHMDialog;
 public class SchroedingerGame extends BasicGame
 {
 
+	TiledMap map;
+	Music music;
+	
 	private IHMDialog ihm;
 	private int width = 800;
 	private int height = 600;
@@ -27,6 +31,19 @@ public class SchroedingerGame extends BasicGame
 		super("Schroedinger");
 		this.width = width;
 		this.height = height;
+		try {
+			music = new Music("./music/Ville.wav");
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		music.loop();
+		try {
+			map = new TiledMap("img/map.tmx","img");
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override

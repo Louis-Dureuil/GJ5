@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="collision" tilewidth="32" tileheight="32">
+  <image source="tileset_collision.jpg" width="64" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="blocked" value="false"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="blocked" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="3" name="bank" tilewidth="32" tileheight="32">
+  <image source="bank.jpg" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="7" name="city_hall" tilewidth="32" tileheight="32">
+  <image source="city_hall.jpg" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="15" name="eglise" tilewidth="32" tileheight="32">
+  <image source="eglise.jpg" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="31" name="jail" tilewidth="32" tileheight="32">
+  <image source="jail.jpg" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="39" name="saloon" tilewidth="32" tileheight="32">
+  <image source="saloon.jpg" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="47" name="sherif" tilewidth="32" tileheight="32">
+  <image source="sherif.jpg" width="64" height="64"/>
+ </tileset>
+ <layer name="collision" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3VMQoAMAgDQO3/H929U6tDEW64TYSQIRkRCQAAAAAAAAAAAJSsQ/fmd57p9AFAxc02vP6wI/oAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGC2DWVgUU9AnAAA
+  </data>
+ </layer>
+ <layer name="Ville" width="100" height="100" opacity="0.51">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3OSU4CYRSF0T9BULFFROwVbBBQuv0vzruBmlQqqUGdk3yzl5dbCgAAAAAAAAAAAFDXIv2kZVpV3Bynk3SahhU3vXTU+LruWaff9Jc2FTdn6TxdpMuKm34aNL4O2nWVrtMo3bS8hVLG6TZN0l3LWyhlmu7TQ3qs+WObduktvadZmjcxroOe0nN6Sa81f+zTIX2kz/SVvhtZBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAV/wDAjjZaUCcAAA=
+  </data>
+ </layer>
+</map>

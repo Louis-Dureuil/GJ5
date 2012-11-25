@@ -1,0 +1,17 @@
+<message id="1" answer="false">
+	Ques' tu fous là, gros?!
+</message>
+
+<message id="2" answer="true">
+	Je vous conseil d'arrêter ça au plus vite! Le shérif patrouille dehors, il vous attrapera.
+	<!-- On meurt -->
+</message>
+
+<message id="3" answer="true">
+	Rien! Faites ce que vous avez à faire comme si j'étais pas là.
+</message>
+
+<message id="4" answer="false">
+	Sage décision, tarlouze!
+</message>
+

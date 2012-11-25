@@ -7,12 +7,12 @@ public abstract class PNJ {
 	private int x;
 	private int y;
 	private String name;
-	private int pnjID;
+	static private int pnjID;
 	static int maxID = 0;
 	
 	public Task getCurrentTask() { return tasks.peek(); }
 
-	public int getID() { return pnjID; }
+	public static int getID() { return pnjID; }
 	public int getX() { return x; }
 	public void setX(int x) { this.x = x; }
 	public int getY() { return y; }

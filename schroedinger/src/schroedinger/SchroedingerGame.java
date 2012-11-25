@@ -44,7 +44,9 @@ public class SchroedingerGame extends BasicGame
 		}
 		if (World.ffad.currentDialog != null && ihm == null) {
 			World.ffad.actionStopped = true;
-			ihm = new IHMDialog(this, World.ffad.currentDialog.answer(World.ffad.lastAnswer));  
+			ihm = new IHMDialog(this,
+					World.ffad.currentDialog.answer(World.ffad.lastAnswer),
+					World.ffad.newton.getID());  
 			ihm.init(gc);
 		}
 		if (ihm != null && ihm.isAnswered()) {
@@ -60,7 +62,6 @@ public class SchroedingerGame extends BasicGame
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException
 	{
-		g.drawString("Hello World", 100, 100);
 		if (ihm != null) {
 			ihm.render(gc, g);
 		}

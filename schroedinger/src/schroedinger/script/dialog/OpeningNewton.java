@@ -12,7 +12,7 @@ public class OpeningNewton extends Dialog {
 	public OpeningNewton() {
 		this.messages = new ArrayList<DialogIndexes>();
 		messages.add(new DialogIndexes(0,
-				"Mes amis, l'heure est grave ! " +
+				"\nMes amis, l'heure est grave ! " +
 				"Un meurtre a été commis dans notre ville de " +
 				"Far, Far A Day ! Cet acte est impardonnable, " +
 				"et mérite une punition exemplaire !"));

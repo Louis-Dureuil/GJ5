@@ -62,7 +62,6 @@ public class SchroedingerGame extends BasicGame
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException
 	{
-		g.drawString("Hello World", 100, 100);
 		if (ihm != null) {
 			ihm.render(gc, g);
 		}

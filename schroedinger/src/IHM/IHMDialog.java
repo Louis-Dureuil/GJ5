@@ -120,7 +120,7 @@ public class IHMDialog extends BasicGame {
 			y += lineHeight;
 		}
 		
-		g.drawString("SPACE to restart, ENTER to show all", 10, 40);
+		g.drawString("ENTER to continue, press 1,2,3... to choose an answer", 10, 40);
 		
 	}
 
